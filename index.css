@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.container {
+    padding: 50px;
+}
+
+.wrap-trello {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    border: 1px solid rgb(142, 57, 221);
+    border-radius: 5px;
+    background-color: rgb(212, 122, 212);
+    align-items: center;
+}
+
+.text {
+    font-size: 21px;
+}
+
+.timer {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.wrap-for-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
