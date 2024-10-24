@@ -31,3 +31,84 @@ body {
 }
 
 .wrap-for-cards {}
+
+.todo-card {
+    margin-top: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid blueviolet;
+}
+
+.headerTodo {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 15px;
+    background-color: aquamarine;
+}
+
+.header-text {
+    font-size: 15px;
+}
+
+.header-counter {
+    font-size: 15px;
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 12px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.delete {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.inner-card {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #36ade5;
+    border-radius: 5px;
+    background-color: #3ae4e1;
+}
+
+.description-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.description {
+    font-size: 14px;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid white;
+    background-color: aqua;
+}
+
+.sectionUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
