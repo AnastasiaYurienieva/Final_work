@@ -30,8 +30,4 @@ body {
     font-size: 18px;
 }
 
-.wrap-for-cards {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
+.wrap-for-cards {}
