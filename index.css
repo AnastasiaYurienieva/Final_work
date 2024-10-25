@@ -13,9 +13,9 @@ body {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    border: 1px solid rgb(142, 57, 221);
+    border: 1px solid rgb(196, 145, 222);
     border-radius: 5px;
-    background-color: rgb(212, 122, 212);
+    background-color: rgb(223, 168, 223);
     align-items: center;
 }
 
@@ -30,7 +30,11 @@ body {
     font-size: 18px;
 }
 
-.wrap-for-cards {}
+.wrap-for-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
 
 .todo-card {
     margin-top: 20px;
@@ -44,13 +48,14 @@ body {
 .headerTodo {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    margin-bottom: 15px;
-    background-color: aquamarine;
+    align-items: center;
+    background-color: rgb(48, 217, 19);
 }
 
-.header-text {
+.header-todo-text {
     font-size: 15px;
+    font-style: italic;
+    text-transform: uppercase;
 }
 
 .header-counter {
@@ -86,7 +91,7 @@ body {
     padding: 10px;
     border: 1px solid #36ade5;
     border-radius: 5px;
-    background-color: #3ae4e1;
+    background-color: #8342de;
 }
 
 .description-section {
@@ -103,7 +108,7 @@ body {
 button {
     padding: 5px 10px;
     border: 1px solid white;
-    background-color: aqua;
+    background-color: rgb(93, 176, 239);
 }
 
 .sectionUser {
@@ -111,4 +116,38 @@ button {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.in-progress-card {
+    margin-top: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid blueviolet;
+}
+
+.in-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.in-progress-text {
+    font-size: 15px;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.in-progress-counter {
+    font-size: 15px;
+}
+
+.done-card {
+    margin-top: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid blueviolet;
 }

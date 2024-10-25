@@ -40,18 +40,24 @@ const headerTodo = document.createElement('div');
 headerTodo.classList.add('todo-header');
 cardTodo.appendChild(headerTodo);
 
-const headerText = document.createElement('p');
-headerText.innerText = 'Todo:';
-headerText.classList.add('header-text');
-headerTodo.appendChild(headerText);
+const headerTextTodo = document.createElement('p');
+headerTextTodo.innerText = `Todo:`;
+headerTextTodo.classList.add('header-todo-text');
+headerTodo.appendChild(headerTextTodo);
+
+let todoCounter = 0;
+const todoCards = [];
 
 const counterTodo = document.createElement('div');
 counterTodo.classList.add('header-counter');
-counterTodo.innerText = `${counterTodo}`;
-counterTodo.textContent = '0';
+counterTodo.innerText = `${todoCounter}`;
 headerTodo.appendChild(counterTodo);
 
-function innercard(userName, time) {
+function updateCounter() {
+    counterTodo.textContent = `${todoCounter}`
+}
+
+function innercard(userName = 'Default User', time = '00:00') {
     const innerCard = document.createElement('div');
     innerCard.classList.add('inner-card');
     cardTodo.appendChild(innerCard);
@@ -78,6 +84,19 @@ function innercard(userName, time) {
     deleteButton.classList.add('delete');
     deleteButton.textContent = 'Delete';
     buttons.appendChild(deleteButton);
+    deleteButton.addEventListener("click", (event) => {
+        const cardToRemove = event.target.closest('.inner-card');
+        if (cardToRemove) {
+            const index = todoCards.indexOf(cardToRemove);
+            if (index > -1) {
+                todoCards.splice(index, 1);
+            }
+
+            todoCounter--;
+            updateCounter();
+            cardToRemove.remove();
+        }
+    });
 
 
     const sectionDescription = document.createElement('div');
@@ -107,12 +126,75 @@ function innercard(userName, time) {
     userTime.classList.add('user-time');
     userTime.textContent = `Time: ${time}`;
     sectionUser.appendChild(userTime);
+
+
+    todoCards.push(innerCard);
+    todoCounter++;
+    updateCounter();
+    return innerCard;
+
+
 }
+
+innercard();
+innercard();
+
 
 const addButton = document.createElement('button');
 addButton.classList.add('add-todo');
 addButton.textContent = 'Add Todo';
 cardTodo.appendChild(addButton);
 addButton.addEventListener('click', () => {
-    innercard('Jane Smith', '11:00 AM');
+    const newCard = innercard('New User', new Date().toLocaleTimeString());
+    cardTodo.insertBefore(newCard, addButton);
+});
+
+const cardInProgress = document.createElement('div');
+cardInProgress.classList.add('in-progress-card');
+wrapforCards.appendChild(cardInProgress);
+
+const headerInProgress = document.createElement('div');
+headerInProgress.classList.add('in-progress-header');
+cardInProgress.appendChild(headerInProgress);
+
+const headerTextinProgress = document.createElement('p');
+headerTextinProgress.innerText = 'In Progress:';
+headerTextinProgress.classList.add('in-progress-text');
+headerInProgress.appendChild(headerTextinProgress);
+
+const counterInProgress = document.createElement('div');
+counterInProgress.classList.add('in-progress-counter');
+counterInProgress.innerText = `${counterInProgress}`;
+counterInProgress.textContent = '0';
+headerInProgress.appendChild(counterInProgress);
+
+
+
+const cardDone = document.createElement('div');
+cardDone.classList.add('done-card');
+wrapforCards.appendChild(cardDone);
+
+const headerCardDone = document.createElement('div');
+headerCardDone.classList.add('card-done-header');
+cardDone.appendChild(headerCardDone);
+
+const headerTextDone = document.createElement('p');
+headerTextDone.innerText = 'Done:';
+headerTextDone.classList.add('done-text');
+headerCardDone.appendChild(headerTextDone);
+
+const counterDone = document.createElement('div');
+counterDone.classList.add('done-counter');
+counterDone.innerText = `${counterDone}`;
+counterDone.textContent = '0';
+headerCardDone.appendChild(counterDone);
+
+
+
+const deleteAllButton = document.createElement('button');
+deleteAllButton.classList.add('delete-all-button');
+deleteAllButton.textContent = 'Delete All';
+cardDone.appendChild(deleteAllButton);
+deleteAllButton.addEventListener('click', () => {
+    remove(innercard());
 });
