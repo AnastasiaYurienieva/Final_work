@@ -198,3 +198,25 @@ cardDone.appendChild(deleteAllButton);
 deleteAllButton.addEventListener('click', () => {
     remove(innercard());
 });
+
+function initDragAndDrop() {
+
+    let dragged = null; // перемещенные данные
+    // источник перемещения
+    const innerCard = document.querySelectorAll("inner-card")
+        // в обработчике устанавливаем ссылку на перетаскиваемый элемент
+    innerCard.addEventListener("dragstart", (e) => dragged = e.cardInProgress);
+
+    // целевая область перемещения
+    const cardInProgress = document.querySelectorAll("in-progress-card");
+    // предупреждаем событие drop
+    cardInProgress.addEventListener("dragover", (e) => e.preventDefault());
+    // полностью перемещаем перетаскиваемый элемент на целевую область
+    cardInProgress.addEventListener("drop", (e) => {
+        dragged.parentNode.removeChild(dragged);
+        e.cardInProgress.appendChild(dragged);
+    });
+
+}
+
+initDragAndDrop()
