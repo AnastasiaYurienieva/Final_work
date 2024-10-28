@@ -198,10 +198,13 @@ deleteAllButton.classList.add('delete-all-button');
 deleteAllButton.textContent = 'Delete All';
 cardDone.appendChild(deleteAllButton);
 deleteAllButton.addEventListener('click', () => {
-    remove(innercard());
+    const doneCards = cardDone.querySelectorAll('.inner-card');
+    doneCards.forEach(card => {
+        card.remove();
+    });
+    doneCounter = 0;
+    counterDone.textContent = '0';
 });
-
-
 
 function makeDraggable(card) {
     card.setAttribute('draggable', 'true');
@@ -222,10 +225,9 @@ function initDragAndDrop() {
 
     todoCards.forEach(makeDraggable);
 
-    // Обработка перетаскивания для целевых областей
     dropTargets.forEach(target => {
         target.addEventListener('dragover', (e) => {
-            e.preventDefault(); // Разрешить перетаскивание
+            e.preventDefault();
         });
 
         target.addEventListener('drop', (e) => {
@@ -234,11 +236,25 @@ function initDragAndDrop() {
             if (draggedCard) {
                 const targetButton = target.querySelector('.delete-all-button, .add-todo');
                 if (targetButton) {
-                    target.insertBefore(draggedCard, targetButton); // Insert before the button
+                    target.insertBefore(draggedCard, targetButton);
                 } else {
-                    target.appendChild(draggedCard); // Default to appending
+                    target.appendChild(draggedCard);
                 }
-                // Update counters based on card position if needed
+            }
+            const originalSection = draggedCard.parentNode;
+            if (target === cardInProgress) {
+                inProgressCounter++;
+                counterInProgress.textContent = `${inProgressCounter}`;
+            } else if (target === cardDone) {
+                doneCounter++;
+                counterDone.textContent = `${doneCounter}`;
+            } else {
+                // Decrease counters if returning to Todo
+                if (originalSection === cardInProgress) inProgressCounter--;
+                counterInProgress.textContent = `${inProgressCounter}`;
+                if (originalSection === cardDone) doneCounter--;
+                counterDone.textContent = `${doneCounter}`;
+
             }
         });
     });
