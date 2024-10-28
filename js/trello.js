@@ -54,7 +54,7 @@ counterTodo.innerText = `${todoCounter}`;
 headerTodo.appendChild(counterTodo);
 
 function updateCounter() {
-    counterTodo.textContent = `${todoCounter}`
+    counterTodo.textContent = `${todoCounter}`;
 }
 
 function innercard(userName = 'Default User', time = '00:00') {
@@ -127,10 +127,10 @@ function innercard(userName = 'Default User', time = '00:00') {
     userTime.textContent = `Time: ${time}`;
     sectionUser.appendChild(userTime);
 
-
     todoCards.push(innerCard);
     todoCounter++;
     updateCounter();
+    makeDraggable(innerCard);
     return innerCard;
 
 
@@ -138,7 +138,6 @@ function innercard(userName = 'Default User', time = '00:00') {
 
 innercard();
 innercard();
-
 
 const addButton = document.createElement('button');
 addButton.classList.add('add-todo');
@@ -168,6 +167,7 @@ counterInProgress.innerText = `${counterInProgress}`;
 counterInProgress.textContent = '0';
 headerInProgress.appendChild(counterInProgress);
 
+let inProgressCounter = 0;
 
 
 const cardDone = document.createElement('div');
@@ -189,6 +189,8 @@ counterDone.innerText = `${counterDone}`;
 counterDone.textContent = '0';
 headerCardDone.appendChild(counterDone);
 
+let doneCounter = 0;
+
 
 
 const deleteAllButton = document.createElement('button');
@@ -199,24 +201,50 @@ deleteAllButton.addEventListener('click', () => {
     remove(innercard());
 });
 
-function initDragAndDrop() {
 
-    let dragged = null; // перемещенные данные
-    // источник перемещения
-    const innerCard = document.querySelectorAll("inner-card")
-        // в обработчике устанавливаем ссылку на перетаскиваемый элемент
-    innerCard.addEventListener("dragstart", (e) => dragged = e.cardInProgress);
 
-    // целевая область перемещения
-    const cardInProgress = document.querySelectorAll("in-progress-card");
-    // предупреждаем событие drop
-    cardInProgress.addEventListener("dragover", (e) => e.preventDefault());
-    // полностью перемещаем перетаскиваемый элемент на целевую область
-    cardInProgress.addEventListener("drop", (e) => {
-        dragged.parentNode.removeChild(dragged);
-        e.cardInProgress.appendChild(dragged);
+function makeDraggable(card) {
+    card.setAttribute('draggable', 'true');
+
+    card.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', card.innerHTML);
+        card.classList.add('dragging');
     });
+
+    card.addEventListener('dragend', () => {
+        card.classList.remove('dragging');
+    });
+}
+
+function initDragAndDrop() {
+    const todoCards = document.querySelectorAll('.inner-card');
+    const dropTargets = document.querySelectorAll('.in-progress-card, .done-card, .todo-card');
+
+    todoCards.forEach(makeDraggable);
+
+    // Обработка перетаскивания для целевых областей
+    dropTargets.forEach(target => {
+        target.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Разрешить перетаскивание
+        });
+
+        target.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const draggedCard = document.querySelector('.dragging');
+            if (draggedCard) {
+                const targetButton = target.querySelector('.delete-all-button, .add-todo');
+                if (targetButton) {
+                    target.insertBefore(draggedCard, targetButton); // Insert before the button
+                } else {
+                    target.appendChild(draggedCard); // Default to appending
+                }
+                // Update counters based on card position if needed
+            }
+        });
+    });
+
 
 }
 
-initDragAndDrop()
+
+initDragAndDrop();
