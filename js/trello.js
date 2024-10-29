@@ -80,6 +80,17 @@ function innercard(userName = 'Default User', time = '00:00') {
     editButton.textContent = 'Edit';
     buttons.appendChild(editButton);
 
+    editButton.addEventListener("click", () => {
+        modalTitle.value = titleElement.innerText;
+        modalDescription.value = descriptionElement.innerText;
+        modalUser.value = user.innerText.replace("User: ", "");
+        modal.style.display = "block";
+    });
+
+
+
+
+
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete');
     deleteButton.textContent = 'Delete';
@@ -119,7 +130,7 @@ function innercard(userName = 'Default User', time = '00:00') {
 
     const user = document.createElement('p');
     user.classList.add('user');
-    user.innerText = `User: ${user}`;
+    user.innerText = `User`;
     sectionUser.appendChild(user);
 
     const userTime = document.createElement('div');
@@ -198,12 +209,15 @@ deleteAllButton.classList.add('delete-all-button');
 deleteAllButton.textContent = 'Delete All';
 cardDone.appendChild(deleteAllButton);
 deleteAllButton.addEventListener('click', () => {
-    const doneCards = cardDone.querySelectorAll('.inner-card');
-    doneCards.forEach(card => {
-        card.remove();
-    });
-    doneCounter = 0;
-    counterDone.textContent = '0';
+    const confirmation = confirm("Warning! Are you sure you want to delete all done cards?");
+    if (confirmation) {
+        const doneCards = cardDone.querySelectorAll('.inner-card');
+        doneCards.forEach(card => {
+            card.remove();
+        });
+        doneCounter = 0;
+        counterDone.textContent = '0';
+    }
 });
 
 function makeDraggable(card) {
@@ -220,10 +234,7 @@ function makeDraggable(card) {
 }
 
 function initDragAndDrop() {
-    const todoCards = document.querySelectorAll('.inner-card');
-    const dropTargets = document.querySelectorAll('.in-progress-card, .done-card, .todo-card');
-
-    todoCards.forEach(makeDraggable);
+    const dropTargets = [cardTodo, cardInProgress, cardDone];
 
     dropTargets.forEach(target => {
         target.addEventListener('dragover', (e) => {
@@ -234,6 +245,38 @@ function initDragAndDrop() {
             e.preventDefault();
             const draggedCard = document.querySelector('.dragging');
             if (draggedCard) {
+                const originalSection = draggedCard.parentNode;
+
+                if (target === cardInProgress) {
+                    if (originalSection === cardTodo) {
+                        todoCounter--;
+                        updateCounter();
+                    }
+                    inProgressCounter++;
+                    counterInProgress.textContent = `${inProgressCounter}`;
+                } else if (target === cardDone) {
+                    if (originalSection === cardInProgress) {
+                        inProgressCounter--;
+                        counterInProgress.textContent = `${inProgressCounter}`;
+                    } else if (originalSection === cardTodo) {
+                        todoCounter--;
+                        updateCounter();
+                    }
+                    doneCounter++;
+                    counterDone.textContent = `${doneCounter}`;
+                } else if (target === cardTodo) {
+
+                    if (originalSection === cardInProgress) {
+                        inProgressCounter--;
+                        counterInProgress.textContent = `${inProgressCounter}`;
+                    } else if (originalSection === cardDone) {
+                        doneCounter--;
+                        counterDone.textContent = `${doneCounter}`;
+                    }
+                    todoCounter++;
+                    updateCounter();
+                }
+
                 const targetButton = target.querySelector('.delete-all-button, .add-todo');
                 if (targetButton) {
                     target.insertBefore(draggedCard, targetButton);
@@ -241,26 +284,65 @@ function initDragAndDrop() {
                     target.appendChild(draggedCard);
                 }
             }
-            const originalSection = draggedCard.parentNode;
-            if (target === cardInProgress) {
-                inProgressCounter++;
-                counterInProgress.textContent = `${inProgressCounter}`;
-            } else if (target === cardDone) {
-                doneCounter++;
-                counterDone.textContent = `${doneCounter}`;
-            } else {
-                // Decrease counters if returning to Todo
-                if (originalSection === cardInProgress) inProgressCounter--;
-                counterInProgress.textContent = `${inProgressCounter}`;
-                if (originalSection === cardDone) doneCounter--;
-                counterDone.textContent = `${doneCounter}`;
-
-            }
         });
     });
-
-
 }
 
-
 initDragAndDrop();
+
+
+
+
+
+
+const modal = document.createElement('div');
+modal.classList.add('modal');
+modal.innerHTML = `
+    <div class="modal-content">
+        <label for="modalTitle">Title:</label>
+        <input type="text" id="modalTitle" />
+        <label for="modalDescription">Description:</label>
+        <input type="text" id="modalDescription" />
+         <div class="user-choice">
+         <div class="user-selection">
+            <label for="modalUser">Select user:</label>
+            <select id="modalUser">
+                <option value="Andrey">Andrey</option>
+                <option value="Olga">Olga</option>
+                <option value="Vasilisa">Vasilisa</option>
+                <option value="Petr">Petr</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button id="confirmChanges">Confirm</button>
+            <button id="cancelChanges">Cancel</button>
+        </div>
+    </div>
+    </div>
+`;
+document.body.appendChild(modal);
+
+const confirmButton = modal.querySelector('#confirmChanges');
+const cancelButton = modal.querySelector('#cancelChanges');
+const modalTitle = modal.querySelector('#modalTitle');
+const modalDescription = modal.querySelector('#modalDescription');
+const modalUser = modal.querySelector('#modalUser');
+
+
+confirmButton.addEventListener("click", () => {
+    titleElement.innerText = modalTitle.value.trim();
+    descriptionElement.innerText = modalDescription.value.trim();
+    user.innerText = `User: ${modalUser.value.trim()}`;
+    modal.style.display = "none";
+});
+
+cancelButton.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// Закрытие модального окна при нажатии вне его
+window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});

@@ -43,6 +43,7 @@ body {
     justify-content: space-between;
     flex-direction: column;
     border: 1px solid blueviolet;
+    width: 300px;
 }
 
 .headerTodo {
@@ -108,7 +109,7 @@ body {
 button {
     padding: 5px 10px;
     border: 1px solid white;
-    background-color: rgb(93, 176, 239);
+    background-color: #87cefa;
 }
 
 .sectionUser {
@@ -116,15 +117,6 @@ button {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.in-progress-card {
-    margin-top: 20px;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    border: 1px solid blueviolet;
 }
 
 .in-progress-header {
@@ -149,5 +141,118 @@ button {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    border: 1px solid blueviolet;
+    border: 1px solid #0ab7f1;
+    background-color: #add8e6;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.in-progress-card {
+    background-color: #ffcccb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid;
+    width: 300px;
+}
+
+.in-progress-card .inner-card {
+    background-color: #ffb6c1;
+    border: 1px solid #ff69b4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.done-card .inner-card {
+    background-color: #b0e0e6;
+    border: 1px solid #87cefa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.delete-all-button {
+    background-color: #b0e0e6;
+    border: 1px solid #87cefa;
+    padding: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input,
+select {
+    margin-bottom: 10px;
+}
+
+#modalDescription {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.user-choice {
+    display: flex;
+    align-items: center;
+}
+
+.user-selection {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    margin-left: 5px;
 }
