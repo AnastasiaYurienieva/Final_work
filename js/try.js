@@ -78,3 +78,9 @@ function initDragAndDrop() {
 
 
 initDragAndDrop();
+
+
+addButton.addEventListener('click', () => {
+    const newCard = innercard('New User', new Date().toLocaleTimeString());
+    cardTodo.insertBefore(newCard, addButton);
+});

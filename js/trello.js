@@ -81,14 +81,8 @@ function innercard(userName = 'Default User', time = '00:00') {
     buttons.appendChild(editButton);
 
     editButton.addEventListener("click", () => {
-        modalTitle.value = titleElement.innerText;
-        modalDescription.value = descriptionElement.innerText;
-        modalUser.value = user.innerText.replace("User: ", "");
-        modal.style.display = "block";
+        openModal(innerCard);
     });
-
-
-
 
 
     const deleteButton = document.createElement('button');
@@ -306,7 +300,7 @@ modal.innerHTML = `
          <div class="user-choice">
          <div class="user-selection">
             <label for="modalUser">Select user:</label>
-            <select id="modalUser">
+            <select id="modalUser">Select user:
                 <option value="Andrey">Andrey</option>
                 <option value="Olga">Olga</option>
                 <option value="Vasilisa">Vasilisa</option>
@@ -328,19 +322,24 @@ const modalTitle = modal.querySelector('#modalTitle');
 const modalDescription = modal.querySelector('#modalDescription');
 const modalUser = modal.querySelector('#modalUser');
 
+function openModal(card) {
+    modalTitle.value = card.querySelector('.title').innerText;
+    modalDescription.value = card.querySelector('.description').innerText;
+    modalUser.value = card.querySelector('.user').innerText.replace("User: ", "");
+    modal.style.display = "block";
 
-confirmButton.addEventListener("click", () => {
-    titleElement.innerText = modalTitle.value.trim();
-    descriptionElement.innerText = modalDescription.value.trim();
-    user.innerText = `User: ${modalUser.value.trim()}`;
-    modal.style.display = "none";
-});
+    confirmButton.onclick = () => {
+        card.querySelector('.title').innerText = modalTitle.value.trim();
+        card.querySelector('.description').innerText = modalDescription.value.trim();
+        card.querySelector('.user').innerText = `User: ${modalUser.value.trim()}`;
+        modal.style.display = "none";
+    };
+}
 
 cancelButton.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-// Закрытие модального окна при нажатии вне его
 window.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.style.display = "none";
