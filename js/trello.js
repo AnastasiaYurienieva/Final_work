@@ -227,6 +227,67 @@ function makeDraggable(card) {
     });
 }
 
+function updateButtonsForInProgress(card, isInProgress) {
+    const buttonsContainer = card.querySelector('.buttons');
+    buttonsContainer.innerHTML = '';
+
+    if (isInProgress) {
+        const backButton = document.createElement('button');
+        backButton.classList.add('back');
+        backButton.textContent = 'Back';
+        backButton.addEventListener('click', () => {
+            card.parentNode.removeChild(card);
+            cardTodo.appendChild(card);
+            updateButtonsForInProgress(card, false);
+            todoCounter++;
+            updateCounter();
+            inProgressCounter--;
+            counterInProgress.textContent = `${inProgressCounter}`;
+
+        });
+        buttonsContainer.appendChild(backButton);
+
+        const completeButton = document.createElement('button');
+        completeButton.classList.add('complete');
+        completeButton.textContent = 'Complete';
+        completeButton.addEventListener('click', () => {
+            card.parentNode.removeChild(card);
+            cardDone.appendChild(card);
+            updateButtonsForInProgress(card, false);
+            inProgressCounter--;
+            counterInProgress.textContent = `${inProgressCounter}`;
+            doneCounter++;
+            counterDone.textContent = `${doneCounter}`;
+        });
+        buttonsContainer.appendChild(completeButton);
+    } else {
+        const editButton = document.createElement('button');
+        editButton.classList.add('edit');
+        editButton.textContent = 'Edit';
+        buttonsContainer.appendChild(editButton);
+        editButton.addEventListener("click", () => {
+            openModal(card);
+        });
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete');
+        deleteButton.textContent = 'Delete';
+        buttonsContainer.appendChild(deleteButton);
+        deleteButton.addEventListener("click", (event) => {
+            const cardToRemove = event.target.closest('.inner-card');
+            if (cardToRemove) {
+                const index = todoCards.indexOf(cardToRemove);
+                if (index > -1) {
+                    todoCards.splice(index, 1);
+                }
+                todoCounter--;
+                updateCounter();
+                cardToRemove.remove();
+            }
+        });
+    }
+}
+
+
 function initDragAndDrop() {
     const dropTargets = [cardTodo, cardInProgress, cardDone];
 
@@ -248,6 +309,7 @@ function initDragAndDrop() {
                     }
                     inProgressCounter++;
                     counterInProgress.textContent = `${inProgressCounter}`;
+                    updateButtonsForInProgress(draggedCard, true);
                 } else if (target === cardDone) {
                     if (originalSection === cardInProgress) {
                         inProgressCounter--;
