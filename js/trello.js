@@ -331,6 +331,7 @@ function initDragAndDrop() {
                     }
                     todoCounter++;
                     updateCounter();
+
                 }
 
                 const targetButton = target.querySelector('.delete-all-button, .add-todo');
