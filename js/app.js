@@ -274,7 +274,7 @@ function updateButtonsForInProgress(card, isInProgress) {
         completeButton.addEventListener('click', () => {
             card.parentNode.removeChild(card);
             cardDone.appendChild(card);
-            updateButtonsForInProgress(card, false);
+            updateButtonsCardDone(card, true);
             inProgressCounter--;
             counterInProgress.textContent = `${inProgressCounter}`;
             doneCounter++;
