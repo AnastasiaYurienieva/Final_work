@@ -120,14 +120,17 @@ function innercard(userName = 'Default User', time = '00:00') {
     sectionDescription.appendChild(nextButton);
 
     nextButton.addEventListener("click", () => {
-        cardTodo.removeChild(innerCard);
+        if (inProgressCounter >= 6) {
+            alert("Warning! You cannot add a card until you complete the current ones!");
+            return;
+        } else
+            cardTodo.removeChild(innerCard);
         cardInProgress.appendChild(innerCard);
         updateButtonsForInProgress(innerCard, true);
         todoCounter--;
         updateCounter();
         inProgressCounter++;
         counterInProgress.textContent = `${inProgressCounter}`;
-
     });
 
 
@@ -279,6 +282,11 @@ function updateButtonsForInProgress(card, isInProgress) {
         });
         buttonsContainer.appendChild(completeButton);
     } else {
+        const nextButton = card.querySelector('.next-button');
+        if (nextButton) {
+            nextButton.style.display = 'block';
+        }
+
         const editButton = document.createElement('button');
         editButton.classList.add('edit');
         editButton.textContent = 'Edit';
