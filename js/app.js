@@ -57,7 +57,7 @@ function updateCounter() {
     counterTodo.textContent = `${todoCounter}`;
 }
 
-function innercard(userName = 'Default User', time = '00:00') {
+function innercard(userName = 'Default User', time = new Date().toLocaleTimeString()) {
     const innerCard = document.createElement('div');
     innerCard.classList.add('inner-card');
     cardTodo.appendChild(innerCard);
@@ -166,6 +166,7 @@ addButton.textContent = 'Add Todo';
 cardTodo.appendChild(addButton);
 addButton.addEventListener('click', () => {
     openModalAdd();
+
 });
 
 const cardInProgress = document.createElement('div');
@@ -517,10 +518,13 @@ function openModalAdd() {
             return;
         }
 
-        const newCard = innercard(modalUserAdd.value, modalDescriptionAdd.value);
+        const currentTime = new Date().toLocaleTimeString();
+
+        const newCard = innercard(modalUserAdd.value, currentTime);
         newCard.querySelector('.title').innerText = modalTitleAdd.value.trim();
         newCard.querySelector('.description').innerText = modalDescriptionAdd.value.trim();
         newCard.querySelector('.user').innerText = `User: ${modalUserAdd.value.trim()}`;
+
 
         cardTodo.insertBefore(newCard, addButton);
         modalAdd.style.display = "none";

@@ -43,10 +43,13 @@ function openModalAdd() {
             return;
         }
 
-        const newCard = innercard(modalUserAdd.value, modalDescriptionAdd.value);
+        const currentTime = new Date().toLocaleTimeString();
+
+        const newCard = innercard(modalUserAdd.value, currentTime);
         newCard.querySelector('.title').innerText = modalTitleAdd.value.trim();
         newCard.querySelector('.description').innerText = modalDescriptionAdd.value.trim();
         newCard.querySelector('.user').innerText = `User: ${modalUserAdd.value.trim()}`;
+
 
         cardTodo.insertBefore(newCard, addButton);
         modalAdd.style.display = "none";
