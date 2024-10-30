@@ -338,8 +338,8 @@ function updateButtonsCardDone(card, isCardDone) {
                 if (index > -1) {
                     todoCards.splice(index, 1);
                 }
-                todoCounter--;
-                updateCounter();
+                doneCounter--;
+                counterDone.textContent = `${doneCounter}`;
                 cardToRemove.remove();
             }
         });
