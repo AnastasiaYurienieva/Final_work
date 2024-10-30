@@ -37,6 +37,7 @@ export function initDragAndDrop() {
                     if (originalSection === cardInProgress) {
                         inProgressCounter--;
                         counterInProgress.textContent = `${inProgressCounter}`;
+                        updateButtonsCardDone(draggedCard, true);
                     } else if (originalSection === cardTodo) {
                         todoCounter--;
                         updateCounter();
