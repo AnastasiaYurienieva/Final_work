@@ -258,7 +258,7 @@ function updateButtonsForInProgress(card, isInProgress) {
         backButton.textContent = 'Back';
         backButton.addEventListener('click', () => {
             card.parentNode.removeChild(card);
-            cardTodo.appendChild(card);
+            cardTodo.insertBefore(card, addButton);
             updateButtonsForInProgress(card, false);
             todoCounter++;
             updateCounter();
@@ -273,7 +273,7 @@ function updateButtonsForInProgress(card, isInProgress) {
         completeButton.textContent = 'Complete';
         completeButton.addEventListener('click', () => {
             card.parentNode.removeChild(card);
-            cardDone.appendChild(card);
+            cardDone.insertBefore(card, deleteAllButton);
             updateButtonsCardDone(card, true);
             inProgressCounter--;
             counterInProgress.textContent = `${inProgressCounter}`;
