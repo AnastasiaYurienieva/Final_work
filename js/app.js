@@ -113,10 +113,23 @@ function innercard(userName = 'Default User', time = '00:00') {
     descriptionElement.textContent = 'Description';
     sectionDescription.appendChild(descriptionElement);
 
+
     const nextButton = document.createElement('button');
     nextButton.classList.add('next-button');
     nextButton.textContent = '>';
     sectionDescription.appendChild(nextButton);
+
+    nextButton.addEventListener("click", () => {
+        cardTodo.removeChild(innerCard);
+        cardInProgress.appendChild(innerCard);
+        updateButtonsForInProgress(innerCard, true);
+        todoCounter--;
+        updateCounter();
+        inProgressCounter++;
+        counterInProgress.textContent = `${inProgressCounter}`;
+
+    });
+
 
     const sectionUser = document.createElement('div');
     sectionUser.classList.add('user-section');
@@ -232,6 +245,11 @@ function updateButtonsForInProgress(card, isInProgress) {
     buttonsContainer.innerHTML = '';
 
     if (isInProgress) {
+        const nextButton = card.querySelector('.next-button');
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
+
         const backButton = document.createElement('button');
         backButton.classList.add('back');
         backButton.textContent = 'Back';
@@ -288,6 +306,39 @@ function updateButtonsForInProgress(card, isInProgress) {
 }
 
 
+
+function updateButtonsCardDone(card, isCardDone) {
+    const buttonsContainer = card.querySelector('.buttons');
+    buttonsContainer.innerHTML = '';
+
+
+
+    if (isCardDone) {
+        const nextButton = card.querySelector('.next-button');
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete');
+        deleteButton.textContent = 'Delete';
+        buttonsContainer.appendChild(deleteButton);
+        deleteButton.addEventListener("click", (event) => {
+            const cardToRemove = event.target.closest('.inner-card');
+            if (cardToRemove) {
+                const index = todoCards.indexOf(cardToRemove);
+                if (index > -1) {
+                    todoCards.splice(index, 1);
+                }
+                todoCounter--;
+                updateCounter();
+                cardToRemove.remove();
+            }
+        });
+    }
+}
+
+
 function initDragAndDrop() {
     const dropTargets = [cardTodo, cardInProgress, cardDone];
 
@@ -314,6 +365,7 @@ function initDragAndDrop() {
                     if (originalSection === cardInProgress) {
                         inProgressCounter--;
                         counterInProgress.textContent = `${inProgressCounter}`;
+                        updateButtonsCardDone(draggedCard, true);
                     } else if (originalSection === cardTodo) {
                         todoCounter--;
                         updateCounter();

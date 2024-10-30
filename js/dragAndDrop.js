@@ -12,34 +12,58 @@ export function makeDraggable(card) {
 }
 
 export function initDragAndDrop() {
-    const todoCards = document.querySelectorAll('.inner-card');
-    const dropTargets = document.querySelectorAll('.in-progress-card, .done-card, .todo-card');
+    const dropTargets = [cardTodo, cardInProgress, cardDone];
 
-    todoCards.forEach(makeDraggable);
-
-    // Обработка перетаскивания для целевых областей
     dropTargets.forEach(target => {
         target.addEventListener('dragover', (e) => {
-            e.preventDefault(); // Разрешить перетаскивание
+            e.preventDefault();
         });
 
         target.addEventListener('drop', (e) => {
             e.preventDefault();
             const draggedCard = document.querySelector('.dragging');
             if (draggedCard) {
+                const originalSection = draggedCard.parentNode;
+
+                if (target === cardInProgress) {
+                    if (originalSection === cardTodo) {
+                        todoCounter--;
+                        updateCounter();
+                    }
+                    inProgressCounter++;
+                    counterInProgress.textContent = `${inProgressCounter}`;
+                    updateButtonsForInProgress(draggedCard, true);
+                } else if (target === cardDone) {
+                    if (originalSection === cardInProgress) {
+                        inProgressCounter--;
+                        counterInProgress.textContent = `${inProgressCounter}`;
+                    } else if (originalSection === cardTodo) {
+                        todoCounter--;
+                        updateCounter();
+                    }
+                    doneCounter++;
+                    counterDone.textContent = `${doneCounter}`;
+                } else if (target === cardTodo) {
+
+                    if (originalSection === cardInProgress) {
+                        inProgressCounter--;
+                        counterInProgress.textContent = `${inProgressCounter}`;
+                    } else if (originalSection === cardDone) {
+                        doneCounter--;
+                        counterDone.textContent = `${doneCounter}`;
+                    }
+                    todoCounter++;
+                    updateCounter();
+
+                }
+
                 const targetButton = target.querySelector('.delete-all-button, .add-todo');
                 if (targetButton) {
-                    target.insertBefore(draggedCard, targetButton); // Insert before the button
+                    target.insertBefore(draggedCard, targetButton);
                 } else {
-                    target.appendChild(draggedCard); // Default to appending
+                    target.appendChild(draggedCard);
                 }
-                // Update counters based on card position if needed
             }
         });
     });
-
-
 }
-
-
-initDragAndDrop();
