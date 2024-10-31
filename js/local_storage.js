@@ -1,27 +1,17 @@
-////??????????
+///???????????
+
 function saveToLocalStorage() {
-    const todos = todoCards.map(card => ({
+    const saved = todoCards.map(card => ({
         title: card.querySelector('.title').innerText,
         description: card.querySelector('.description').innerText,
         user: card.querySelector('.user').innerText.replace("User: ", ""),
+        status: card.parentNode.classList.contains('in-progress-card') ? 'in-progress' : card.parentNode.classList.contains('done-card') ? 'done' : 'todo'
     }));
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
+    localStorage.setItem('savedCards', JSON.stringify(saved));
+};
 
 function loadFromLocalStorage() {
-    const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-    storedTodos.forEach(todo => {
-        const newCard = innercard(todo.user, todo.description);
-        newCard.querySelector('.title').innerText = todo.title;
-        cardTodo.appendChild(newCard);
-    });
+    const loaded = localStorage.getItem('savedCards');
 }
 
-
 window.onload = loadFromLocalStorage;
-
-
-addButton.addEventListener('click', () => {
-    openModalAdd();
-    saveToLocalStorage();
-});

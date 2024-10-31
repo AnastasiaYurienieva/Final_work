@@ -49,6 +49,7 @@ body {
     background-color: #d07de9;
     border-radius: 5px;
     width: 320px;
+    margin-right: 10px;
 }
 
 .done-card {
@@ -71,6 +72,7 @@ body {
     justify-content: space-between;
     flex-direction: column;
     width: 320px;
+    margin-right: 10px;
 }
 
 .headerTodo {

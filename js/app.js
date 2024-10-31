@@ -166,7 +166,6 @@ addButton.textContent = 'Add Todo';
 cardTodo.appendChild(addButton);
 addButton.addEventListener('click', () => {
     openModalAdd();
-
 });
 
 const cardInProgress = document.createElement('div');
