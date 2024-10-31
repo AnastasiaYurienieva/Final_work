@@ -328,7 +328,7 @@ function updateButtonsCardDone(card, isCardDone) {
         }
 
         const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete');
+        deleteButton.classList.add('delete-done');
         deleteButton.textContent = 'Delete';
         buttonsContainer.appendChild(deleteButton);
         deleteButton.addEventListener("click", (event) => {

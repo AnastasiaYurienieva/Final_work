@@ -1,0 +1,459 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.container {
+    padding: 50px;
+}
+
+.wrap-trello {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    border: 1px solid rgb(196, 145, 222);
+    border-radius: 5px;
+    background-color: rgb(214, 157, 254);
+    align-items: center;
+    height: 75px;
+}
+
+.text {
+    font-size: 21px;
+    color: #fefefe;
+}
+
+.timer {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #f30808;
+}
+
+.wrap-for-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.todo-card {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid #9115b4;
+    background-color: #d07de9;
+    border-radius: 5px;
+    width: 320px;
+}
+
+.done-card {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid #0ab7f1;
+    background-color: #a6b8ee;
+    border-radius: 5px;
+    width: 320px;
+}
+
+.in-progress-card {
+    background-color: #f0bdec;
+    border: 1px solid #ef43be;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 320px;
+}
+
+.headerTodo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-todo-text {
+    font-size: 15px;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #780707c9;
+}
+
+.header-counter {
+    font-size: 18px;
+    font-style: italic;
+    text-align: end;
+    color: #780707c9;
+}
+
+.in-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #780707c9;
+}
+
+.in-progress-text {
+    font-size: 15px;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.in-progress-counter {
+    font-size: 18px;
+    font-style: italic;
+    text-align: end;
+}
+
+.card-done-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.done-text {
+    font-size: 15px;
+    font-style: italic;
+    text-transform: uppercase;
+    color: white;
+}
+
+.done-counter {
+    font-size: 18px;
+    font-style: italic;
+    text-align: end;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+}
+
+.add-todo {
+    border: 1px solid white;
+    background-color: #f39beb;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-style: italic;
+}
+
+.add-todo:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.delete-all-button {
+    border: 1px solid white;
+    background-color: #87cefa;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-style: italic;
+}
+
+.delete-all-button:hover {
+    color: #0b2190;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.edit {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #f39beb;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.edit:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.delete {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #f39beb;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.delete:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.inner-card {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #9115b4;
+    background-color: #b87de9;
+}
+
+.description-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.description {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.next-button {
+    font-size: 12px;
+    border: 1px solid white;
+    background-color: #f39beb;
+    border-radius: 5px;
+    color: white;
+}
+
+.next-button:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.sectionUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.user-time {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.in-progress-card .inner-card {
+    background-color: #f13f95;
+    border: 1px solid #ff69b4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.back {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #f0bdec;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.back:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.complete {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #f0bdec;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.complete:hover {
+    color: #f34cd4;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.done-card .inner-card {
+    background-color: #50a4f3;
+    border: 1px solid #87cefa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.delete-done {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #87cefa;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+    color: white;
+}
+
+.delete-done:hover {
+    color: #0b2190;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    margin-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: wavy;
+    font-style: italic;
+}
+
+input,
+select {
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#modalDescription {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.user-choice {
+    display: flex;
+    align-items: center;
+}
+
+.user-selection {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    margin-left: 5px;
+}
+
+.modalAdd {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content2 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#modalDescription2 {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid white;
+    background-color: #87cefa;
+}
