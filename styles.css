@@ -136,6 +136,7 @@ body {
 
 .buttons {
     display: flex;
+    cursor: pointer;
 }
 
 .add-todo {
@@ -145,12 +146,14 @@ body {
     padding: 10px;
     color: white;
     font-style: italic;
+    cursor: pointer;
 }
 
 .add-todo:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .delete-all-button {
@@ -160,12 +163,14 @@ body {
     padding: 10px;
     color: white;
     font-style: italic;
+    cursor: pointer;
 }
 
 .delete-all-button:hover {
     color: #0b2190;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .title-section {
@@ -190,12 +195,14 @@ body {
     text-decoration: wavy;
     font-style: italic;
     color: white;
+    cursor: pointer;
 }
 
 .edit:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .delete {
@@ -207,12 +214,14 @@ body {
     text-decoration: wavy;
     font-style: italic;
     color: white;
+    cursor: pointer;
 }
 
 .delete:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .inner-card {
@@ -244,12 +253,14 @@ body {
     background-color: #f39beb;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 
 .next-button:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .sectionUser {
@@ -292,12 +303,14 @@ body {
     text-decoration: wavy;
     font-style: italic;
     color: white;
+    cursor: pointer;
 }
 
 .back:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .complete {
@@ -309,12 +322,14 @@ body {
     text-decoration: wavy;
     font-style: italic;
     color: white;
+    cursor: pointer;
 }
 
 .complete:hover {
     color: #f34cd4;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .done-card .inner-card {
@@ -334,12 +349,14 @@ body {
     text-decoration: wavy;
     font-style: italic;
     color: white;
+    cursor: pointer;
 }
 
 .delete-done:hover {
     color: #0b2190;
     border: 3px solid white;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .modal {
@@ -370,6 +387,7 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close-button:hover,
@@ -416,10 +434,12 @@ select {
 .button-group {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 button {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .modalAdd {
@@ -458,4 +478,5 @@ button {
     padding: 5px 10px;
     border: 1px solid white;
     background-color: #87cefa;
+    cursor: pointer;
 }
